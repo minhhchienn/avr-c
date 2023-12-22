@@ -34,7 +34,7 @@ void lcd_send_command(uint8_t command){
 
 void lcd_send_data(uint8_t data){
 	LCD_DATA_PORT = data;
-	LCD_CTRL_PORT |= 1 << LCD_RS;			//Set RS = 1 (data)
+	LCD_CTRL_PORT |= 1 << LCD_RS;				//Set RS = 1 (data)
 	LCD_CTRL_PORT &= ~(1 << LCD_RW);			//Set RS = 0 (write)
 	LCD_CTRL_PORT |= (1 << LCD_E);				//Pull up enable
 	_delay_us(1);						//Delay at least 450ns
@@ -43,9 +43,9 @@ void lcd_send_data(uint8_t data){
 }
 
 void lcd_init(){
-	_delay_ms(15);							//Delay at least 15ms
+	_delay_ms(15);						//Delay at least 15ms
 	lcd_send_command(LCD_HOME);
-	lcd_send_command(0x38);						//8 bits mode, 2 line, 5x10 pixels per character
+	lcd_send_command(0x38);					//8 bits mode, 2 line, 5x10 pixels per character
 	lcd_send_command(LCD_DISPLAY_ON);
 	lcd_send_command(LCD_SHIFT_LEFT);
 	lcd_send_command(LCD_CLEAR);
